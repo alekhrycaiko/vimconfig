@@ -15,5 +15,7 @@ https://github.com/tpope/vim-pathogen
 Install vim-plug
 https://github.com/junegunn/vim-plug
 
+Copy the contents of vimrc.txt into your vimrc file.
 
 Run :PluginInstall in vim to install the remaining plugins.
+
