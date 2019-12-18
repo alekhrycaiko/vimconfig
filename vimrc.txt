@@ -41,3 +41,16 @@ endif
 
 call neobundle#end()
 " Syntastic Config
+
+filetype plugin indent on    " required
+set nowrap
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
+set autoindent
+
+try
+	source ~/.vim_runtime/my_configs.vim
+catch
+endtry
