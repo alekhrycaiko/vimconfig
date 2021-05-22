@@ -1,7 +1,9 @@
+set nocompatible
 filetype plugin on
 set rtp+=~/.vim/bundle/Vundle.vim
+
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+"Plugin 'VundleVim/Vundle.vim'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'leafgarland/typescript-vim'      "Typescript development
@@ -10,38 +12,38 @@ Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jason0x43/vim-js-indent'
+Plugin 'fatih/vim-go'
 Plugin 'nvie/vim-flake8'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'chr4/nginx.vim'
-Plugin 'slashmili/alchemist.vim'
+Plugin 'ron-rs/ron.vim' " Rusty RON syntax
+Plugin 'kien/ctrlp.vim' " For searchign via CTRL P
 call vundle#end()            " required
-call plug#begin()
-Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plugin 'liuchengxu/space-vim-dark'
-call plug#end()
-execute pathogen#infect()
-" Required:
+let python_highlight_all=1
+syntax on
+g:flake8_ignore="E501, E128, F403, W503, E401, W60, E203, W291"
+set runtimepath+=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
-if has('nvim')
-  NeoBundle 'rust-lang/rust.vim'
-  NeoBundle 'racer-rust/vim-racer'
-  NeoBundle 'hashivim/vim-terraform'
-  NeoBundle 'juliosueiras/vim-terraform-completion'
-  NeoBundle 'elixir-editors/vim-elixir'
-endif
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
-
+NeoBundle 'rust-lang/rust.vim'
+NeoBundle 'racer-rust/vim-racer'
+NeoBundle 'hashivim/vim-terraform'
+NeoBundle 'juliosueiras/vim-terraform-completion'
+NeoBundle 'elixir-editors/vim-elixir'
+NeoBundle 'Quramy/tsuquyomi' " Typescript vim
 call neobundle#end()
-" Syntastic Config
+NeoBundleCheck
+filetype plugin indent on
 
+call plug#begin('~/.vim/plugged')
+Plug 'brooth/far.vim'
+Plug 'sebdah/vim-delve'
+Plug 'HerringtonDarkholme/yats.vim'
+"Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+" For async completion
+Plug 'Shougo/deoplete.nvim'
+" For Denite features
+Plug 'Shougo/denite.nvim'
+call plug#end()
+" Syntastic and Spacing config.
 filetype plugin indent on    " required
 set nowrap
 set tabstop=2
@@ -49,7 +51,6 @@ set shiftwidth=2
 set expandtab
 set smartindent
 set autoindent
-
 try
 	source ~/.vim_runtime/my_configs.vim
 catch
